@@ -7,6 +7,7 @@ import {
 const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
   const handleLanguageChange = (e) => {
     onLanguageSelect(e.target.value);
+    document.documentElement.lang = e.target.value;
   }
 
   const renderLanguageSelector = () => {
@@ -16,20 +17,19 @@ const Header = ({user, onLanguageSelect, lang, langCode, classes}) => {
     ]
     return (
       <div>
-        <InputLabel shrink>Language:</InputLabel>
         <FormControl
-          style={{
-            width: "100%",
-          }}
-          size="small"
+        fullWidth
+        size="small"
+        id="languageSelector"
         >
           <Select
             value={langCode}
             onChange={handleLanguageChange}
+            labelId="lang"
           >
             {choices.map((c, index) => (
               <MenuItem key={index} value={c.value} >
-                <Typography>{c.label}</Typography>
+                <Typography style={{color: '#ffffff', fontSize: 14}}>{c.label}</Typography>
               </MenuItem>
             ))}
           </Select>
